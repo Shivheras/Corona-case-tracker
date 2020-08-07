@@ -1,0 +1,68 @@
+
+
+<div class="jumbotron mt-3">
+    <h1 class="display-4">Covid Case Summary</h1>
+    <hr class="my-4">
+    
+    <p class="lead">
+      A summary of  total cases from day one.
+    </p>
+    
+    
+  </div>
+  
+  <!-- Search functionality -->
+  <nav class="navbar navbar-light justify-content-center mt-4">
+    <form class="form-inline">
+  
+        <select  (change)="change($event)">
+          <option value="" disabled selected>Choose a Country</option>
+            <option *ngFor="let opt of result" [value]="opt.Country">{{opt.Country}}</option>
+          </select>
+    </form>
+  </nav>
+  
+  <table class="table table-striped mt-3 " >
+    <colgroup>
+      <col width="15%">
+      <col width="15%">
+      <col width="15%">
+      <col width="15%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col" >Confirmed</th>
+        <th scope="col">Deaths</th>
+        <th scope="col">Active</th>
+        <th scope="col">Date</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let items of httpData| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        
+        <td>{{items.Confirmed}}</td>
+        <td>{{items.Deaths}}</td>
+        <td>{{items.Active}}</td>
+        <td>{{items.Date | date: 'dd/MM/yyy'}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+ <div style="margin-left: 20rem;" >
+  <ngb-pagination  [collectionSize]="httpData?.length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+ </div>
+  
+  <div class="ml-5 w-75" [ngStyle]="(display) ? {'visibility': 'visible'} : {'visibility': 'hidden'}" style="display: block;width:40rem;hight:40rem">
+    <canvas baseChart 
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [options]="options"
+            [colors]="pieChartColor"
+            [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  

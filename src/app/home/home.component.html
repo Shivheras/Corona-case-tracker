@@ -1,0 +1,54 @@
+<div class="content">
+    <div class="effect-shine">
+    <h1 class="mt-5"align="center">World's corona case </h1>
+    <div class="form-inline justify-content-center view overlay mt-4">
+        
+        <div class="card border-light mb-3 w-50 m-3 " style="max-width: 18rem; "*ngFor="let data of result|keyvalue">
+          <h5 class="card-header" align="center">{{data.key}}</h5>
+          <div class="card-body text-danger ">
+            <h5 class="card-title" align="center">{{data.value}}</h5>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+            <div class="grid mt-4" style="margin-left: 150px;">
+                <figure class="effect-lily">
+                    <img  style="height:250px" src="../../assets/history.jpg" />
+                    <figcaption>
+                        <div>
+                            <h2>Cases <span> History</span></h2>
+                            <p>Check cases from day one</p>
+                        </div>
+                        <a href="#"[routerLink]="['/search']">View more</a>
+                    </figcaption>			
+                </figure>
+                <figure class="effect-lily">
+                    <img style="height: 250px;"src="../../assets/corona.jpg" />
+                    <figcaption>
+                        <div>
+                            <h2>All<span> Country's cases</span></h2>
+                            <p> Country cases daily updates</p>
+                        </div>
+                        <a href="#"[routerLink]="['/world']">Take there!</a>
+                    </figcaption>			
+                </figure>
+                <figure class="effect-lily " style="margin-left: 200px;">
+                    <img style="height: 250px;width:500px;"src="../../assets/dates.jpg" />
+                    <figcaption>
+                        <div>
+                            <h2>Search<span> Date-Wise</span></h2>
+                            <p> Find the cases by adding start and end dates. </p>
+                        </div>
+                        <a href="#"[routerLink]="['/date']">Take there!</a>
+                    </figcaption>			
+                </figure>
+
+        
+    
+</div>
+
+
+</div><!-- /container -->

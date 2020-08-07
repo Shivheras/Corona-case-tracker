@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "coronavirus"
+    }
+  },
+  "defaultProject": "coronavirus",
+  "cli": {
+    "analytics": false
+  }
 }

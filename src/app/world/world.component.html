@@ -1,0 +1,120 @@
+
+
+<div class="jumbotron mt-3">
+    <h1 class="display-4">Track the Countries case</h1>
+    <hr class="my-4">
+    
+    <p class="lead">
+      A summary of new and total cases per country updated daily.
+    </p>
+    
+    
+  </div>
+  <div class="row " style="margin-left: 120px;" >
+    <div class=" col-6 w-75  h-100 " style="display: block;">
+      <h3>Total Confirmed Cases</h3>
+      <canvas baseChart 
+              [data]="pieChartData"
+              
+              [labels]="pieChartLabels"
+              [options]="options"
+              [colors]="pieChartColor"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <div class=" col-6 w-75  h-100 " style="display: block;">
+      <h3>Death Cases</h3>
+      <canvas baseChart 
+              [data]="pieChart"
+              
+              [labels]="pieChartLabels"
+              [options]="options"
+              [colors]="pieChartColor"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <div class="w-50  h-50 pt-4" style="display: block;margin-left: 15rem;">
+      <h3>Total Recovered Cases</h3>
+      <canvas  baseChart 
+              [data]="pie"
+              
+              [labels]="pieChartLabels"
+              [options]="options"
+              [colors]="pieChartColor"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+  </div>
+  <!-- Search functionality -->
+  
+ <div class="row">
+   <div class="col6">
+  <nav class="navbar navbar-light ml-4 mt-4">
+    <form class="form-inline mt-4"style="margin-left:20rem">
+      <h5 class="pr-3">
+        Search Country here 
+      </h5>
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search Countries">
+    </form>
+  </nav>
+   </div>
+ </div>
+  
+       <div class="row ml-2 mr-2 mb-2 mt-2" id="myItems" >
+        <div class="col-sm-4 mt-3" *ngFor="let datas of httpData.Countries| filter:searchText">
+          <div class="card ">
+            <div class="card bg-light mb-3">  
+              <div class="card-body">
+              <h5 class="card-title"><span class="text-success">{{datas.Country}}</span>
+                <div class="mt-2 ">
+                  Updated Time:- <span class="text-danger">{{datas.Date |date:'medium'}}</span> 
+                </div>
+              </h5>
+              
+             </div>
+            </div>
+            <div class=form-inline>
+            <div class="card-body">
+            <h5 class="card-title">New Confirmed</h5>
+            <p class="card-text text-muted">{{datas.NewConfirmed}}</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Total Confirmed</h5>
+            <p class="card-text text-muted">{{datas.TotalConfirmed}}</p>
+          </div>
+         
+            </div>
+            <div class=form-inline>
+              <div class="card-body">
+              <h5 class="card-title">New Deaths</h5>
+              <p class="card-text text-muted">{{datas.NewDeaths}}</p>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Total Deaths</h5>
+              <p class="card-text text-muted">{{datas.TotalDeaths}}</p>
+            </div>
+              </div>
+             
+              <div class=form-inline>
+                <div class="card-body">
+                <h5 class="card-title">New Recovered</h5>
+                <p class="card-text text-muted">{{datas.NewRecovered}}</p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Total Recovered</h5>
+                <p class="card-text text-muted">{{datas.TotalRecovered}}</p>
+              </div>
+                </div>
+        
+      </div>
+    </div>
+  </div>
+  <button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
+    Scroll To Top
+</button> 
+  
+  
